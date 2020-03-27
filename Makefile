@@ -14,8 +14,13 @@
 ##################################################
 .SUFFIXES : .o .f90 .f
 
+# DIRECTORIES
 SRCDIR  = source
 BLDDIR  = build
+DATDIR  = data
+# ensure that the build and data directories exist...
+$(shell mkdir -p $(BLDDIR))
+$(shell mkdir -p $(DATDIR))
 
 # Compiler
 FC      = gfortran
@@ -63,5 +68,17 @@ $(F90OBJS) : $(BLDDIR)/%.o : $(SRCDIR)/%.f90
 .PHONY: clean
 clean:
 	rm -f $(BLDDIR)/*.o
+	rm -f sph.x
+
+.PHONY: cleaner
+cleaner:
+	rm -f $(BLDDIR)/*.o
+	rm -f $(DATDIR)/*.dat
+	rm -f sph.x
+
+.PHONY: sanitary
+sanitary:
+	rm -rf $(BLDDIR)
+	rm -rf $(DATDIR)
 	rm -f sph.x
 

@@ -66,8 +66,8 @@ c     average_velocity = .TRUE. : Monaghan treatment on average velocity,
 c                       .FALSE.: No average treatment.
 c     config_input = .TRUE. : Load initial configuration data,
 c                   .FALSE.: Generate initial configuration.
-c     virtual_part = .TRUE. : Use vritual particle,
-c                   .FALSE.: No use of vritual particle.
+c     virtual_part = .TRUE. : Use virtual particle,
+c                   .FALSE.: No use of virtual particle.
 c     vp_input = .TRUE. : Load virtual particle information,
 c               .FALSE.: Generate virtual particle information.
 c     visc = .true. : Consider viscosity,
@@ -105,17 +105,20 @@ c          = 2 : center symmetry.
       parameter ( nsym = 0)
 
 c     Control parameters for output 
+c     movie: Write simulation data every time step.
 c     int_stat = .true. : Print statistics about SPH particle interactions.
 c                        including virtual particle information.
 c     print_step: Print Timestep (On Screen)
 c     save_step : Save Timestep    (To Disk File)
 c     moni_particle: The particle number for information monitoring.
+      logical movie
+      parameter ( movie = .true. )
       logical int_stat
-      parameter ( int_stat = .true. )
+      parameter ( int_stat = .false. )
       integer print_step, save_step, moni_particle
-      parameter ( print_step = 100 ,
+      parameter ( print_step = 100,
      &            save_step = 500,
-     &            moni_particle = 1600   )
+     &            moni_particle = 320   )
            
       double precision pi
       parameter ( pi = 3.14159265358979323846 )

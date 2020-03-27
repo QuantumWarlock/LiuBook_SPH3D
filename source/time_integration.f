@@ -34,6 +34,10 @@ c      dt-- timestep                                             [input]
      &       drho(maxn),  av(dim, maxn), ds(maxn), 
      &       t(maxn), tdsdt(maxn)         
       double precision  time, temp_rho, temp_u
+
+      if (movie.and.shocktube) then
+        open(13,file="data/movie.dat")
+      end if
                
       do i = 1, ntotal
         do d = 1, dim
@@ -141,8 +145,19 @@ c---  Definition of variables out of the function vector:
 101     format(1x,3(2x,a12))	 
 100     format(1x,3(2x,e12.6))
 	 
+        if (movie.and.shocktube) then
+          do i=1,ntotal
+            write(13,130) i,x(1,i),vx(1,i),mass(i),rho(i),p(i),u(i)
+          end do
+        end if
+130     format(1x,I6,6(2x,e14.8))
       enddo
 
       nstart=current_ts
 
+      if (movie.and.shocktube) then
+        close(13)
+      end if
+
       end
+

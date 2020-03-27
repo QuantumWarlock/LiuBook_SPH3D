@@ -32,20 +32,26 @@ c     e-- total energy of particles                                [out]
       if (shocktube)   dt = 0.005
       if (shearcavity) dt = 5.e-5
       call input(x, vx, mass, rho, p, u, itype, hsml, ntotal)     
- 1    write(*,*)'  ***************************************************' 
-      write(*,*)'          Please input the maximal time steps '
-      write(*,*)'  ***************************************************'
-      read(*,*) maxtimestep      
+      if (shocktube) then
+        maxtimestep = 40
+      else
+ 1      write(*,*)'  *************************************************' 
+        write(*,*)'          Please input the maximal time steps '
+        write(*,*)'  *************************************************'
+        read(*,*) maxtimestep      
+      end if
       call time_integration(x, vx, mass, rho, p, u, c, s, e, itype, 
      &     hsml, ntotal, maxtimestep, dt )
       call output(x, vx, mass, rho, p, u, c, itype, hsml, ntotal)      
-      write(*,*)'  ***************************************************'
-      write(*,*) 'Are you going to run more time steps ? (0=No, 1=yes)'
-      write(*,*)'  ***************************************************'
-      read (*,*) yesorno     
-      if (yesorno.ne.0) go to 1
+      if (.not.shocktube) then
+        write(*,*)'  **************************************************'
+        write(*,*)'          Run more time steps ? (0=No, 1=yes) '
+        write(*,*)'  **************************************************'
+        read (*,*) yesorno     
+        if (yesorno.ne.0) go to 1
+      end if
       call time_print
       call time_elapsed(s2)      
-      write (*,*)'        Elapsed CPU time = ', s2-s1
+      write (*,*)'        Elapsed CPU time = ', s2-s1, ' s'
                            
       end
