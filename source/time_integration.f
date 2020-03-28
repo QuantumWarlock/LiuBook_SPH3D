@@ -37,6 +37,9 @@ c      dt-- timestep                                             [input]
 
       if (movie.and.shocktube) then
         open(13,file="data/movie.dat")
+        do i = 1, ntotal
+          write(13,130) 0.0e0,x(1,i),vx(1,i),mass(i),rho(i),p(i),u(i)
+        end do
       end if
                
       do i = 1, ntotal
@@ -147,10 +150,10 @@ c---  Definition of variables out of the function vector:
 	 
         if (movie.and.shocktube) then
           do i=1,ntotal
-            write(13,130) i,x(1,i),vx(1,i),mass(i),rho(i),p(i),u(i)
+            write(13,130) time,x(1,i),vx(1,i),mass(i),rho(i),p(i),u(i)
           end do
         end if
-130     format(1x,I6,6(2x,e14.8))
+130     format(1x,e14.8,6(2x,e14.8))
       enddo
 
       nstart=current_ts

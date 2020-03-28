@@ -18,12 +18,14 @@
 SRCDIR  = source
 BLDDIR  = build
 DATDIR  = data
+MOVDIR  = movies
 # ensure that the build and data directories exist...
 $(shell mkdir -p $(BLDDIR))
 $(shell mkdir -p $(DATDIR))
+$(shell mkdir -p $(MOVDIR))
 
 # Compiler
-FC      = gfortran
+FC      = gfortran -O3 -w
 FCFLAGS = -I.
 
 # Program
@@ -80,5 +82,6 @@ cleaner:
 sanitary:
 	rm -rf $(BLDDIR)
 	rm -rf $(DATDIR)
+	rm -rf $(MOVDIR)
 	rm -f sph.x
 
