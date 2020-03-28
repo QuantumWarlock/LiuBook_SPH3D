@@ -9,18 +9,22 @@
 ```
 
 **Clean**
+
 There are 3 levels: clean, cleaner, sanitize. The commands to use them and what they do are as follows:
 ```bash
 >make clean
 ```
+This will delete the executable and the object files in the build directory.
 
 ```bash
 >make cleaner
 ```
+This will do __clean__ plus delete the data files in the data directory.
 
 ```bash
 >make sanitize
 ```
+This will do __cleaner__ plus remove the build, movie and data directories.
 
 **Execute:**
 ```bash
