@@ -24,7 +24,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: alias compiler
-      run: gfortran=gfortran-9
+      run: alias gfortran=gfortran-9
     
     - name: make
       run: make
