@@ -30,8 +30,8 @@ jobs:
       run: make
       
     # Runs a set of commands using the runners shell
-    # Note: The following combination failed...
+    # Note:
     #- name: make
     #  run: |
-    #    alias gfortran=gfortran-9,
+    #    export gfortran="gfortran-9",
     #    make
