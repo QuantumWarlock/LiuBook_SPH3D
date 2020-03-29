@@ -27,6 +27,7 @@ jobs:
       run: alias gfortran=gfortran-9
     
     - name: make
+      shell: gfortran=gfortran-9
       run: make
       
     # Runs a set of commands using the runners shell
