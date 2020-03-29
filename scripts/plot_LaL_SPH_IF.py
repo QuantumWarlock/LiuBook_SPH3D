@@ -82,3 +82,5 @@ if __name__ == '__main__':
     yfD = stateFD[:,2]
     yfIE = stateFD[:,4]
     plotData(xf,yfV,yfP,yfD,yfIE,0.2)
+
+    plt.show()

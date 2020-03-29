@@ -35,6 +35,9 @@ c      dt-- timestep                                             [input]
      &       t(maxn), tdsdt(maxn)         
       double precision  time, temp_rho, temp_u
 
+      nstart = 0
+      current_ts = 0
+
       if (movie.and.shocktube) then
         open(13,file="data/movie.dat")
         do i = 1, ntotal
@@ -47,7 +50,8 @@ c      dt-- timestep                                             [input]
           av(d, i) = 0.
         enddo
       enddo  
-     
+c      write(*,*) 'nstart = ', nstart 
+c      write(*,*) 'current_ts = ', current_ts
       do itimestep = nstart+1, nstart+maxtimestep   
 	   
         current_ts=current_ts+1

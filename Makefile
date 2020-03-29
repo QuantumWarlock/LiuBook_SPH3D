@@ -25,8 +25,8 @@ $(shell mkdir -p $(DATDIR))
 $(shell mkdir -p $(MOVDIR))
 
 # Compiler
-FC      = gfortran -O3 -w
-FCFLAGS = -I.
+FC      = gfortran
+FCFLAGS = -I. -O3 -w
 
 # Program
 MAIN    = sph.x
